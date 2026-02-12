@@ -1,0 +1,96 @@
+class Nodo:
+    def __init__(self, nombre, duracion):  # Nodo individual por canción
+        self.nombre = nombre
+        self.duracion = duracion
+        self.anterior = None
+        self.siguiente = None
+
+
+class listaDoble:
+    def __init__(self):   # Lista doblemente ligada
+        self.cabeza = None
+        self.cola = None
+        self.actual = None
+
+    def vacia(self):  # Revisa si la lista se encuentra vacia
+        return self.cabeza == None
+
+    def agregar_cancion(self, nombre, duracion):  # Agrega una cancion a final de la lista
+        nuevo = Nodo(nombre, duracion)
+
+        if self.vacia():     # Si la lista esta vacia, el nuevo sera la cabeza
+            self.cabeza = nuevo
+            self.cola = nuevo
+            self.actual = nuevo
+        else:  # Se coloca el nuevo nodo al final de la lista
+            self.cola.siguiente = nuevo
+            nuevo.anterior = self.cola
+            self.cola = nuevo
+
+        print("La cancion esta agregada con exito")
+
+    def mostrar_lista(self): # Muestra la lista de los artistas
+        temp = self.cabeza
+
+        if temp == None:
+            print("La lista de la musica se encuentra vacia")
+            return
+
+        print("Lista de canciones:")
+
+        while temp != None: # Recorre la lista desde la cabeza hasta el final
+            print("Nombre:", temp.nombre)
+            print("Duracion:", temp.duracion, "segundos")
+            print("------------")
+            temp = temp.siguiente
+
+def siguiente(self):
+    if self.actual: 
+        if self.actual.siguiente:  
+            self.actual = self.actual.siguiente
+        else:  
+            self.actual = self.cabeza
+
+        
+        print(f"Reproduciendo: {self.actual.dato}")
+    else: 
+        print("No hay canción en reproducción.")
+                
+
+# Crear la lista doble
+lista = listaDoble()
+
+while True:
+    print("======================================================")
+    print("=             😹Reproductor de los temas📯           =")
+    print("======================================================")
+    print("1. Agregar cancion o tema")
+    print("2. Duracion total")
+    print("3. Lista canciones")
+    print("4. Siguiente cancion")
+    print("4. Salir")
+
+    opcion = input("Seleccione la opcion que mas le llame la atencion: ")
+
+    if opcion == "1":
+        nombre = input("Ingrese el nombre de la cancion deseada: ")
+
+        try:  # Evita fallar cuando el usuario ingrese alguna letra
+            duracion = int(input("Duracion de la cancion en segundos: "))
+            lista.agregar_cancion(nombre, duracion)
+
+        except:
+            print("Duración inválida. Debe ingresar un número.")
+
+    elif opcion == "2":
+        lista.duracion_total()
+
+    if opcion == "3":
+        lista.mostrar_lista()
+
+    elif opcion == "4":
+        print("Saliendo del reproductor...")
+        break
+
+    else:
+        print("Opción inválida.")
