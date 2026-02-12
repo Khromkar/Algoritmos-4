@@ -93,11 +93,11 @@ while True:
     print("1. Agregar cancion o tema")
     print("2. Duracion total")
     print("3. Mostrar lista de reproducción")
-    print("4. Mostrar canción actual")
-    print("5. Lista canciones")
-    print("6. Anterior cancion")
-    print("7. Siguiente cancion")
-    print("8. Salir")
+    print("4. Mostrar cancion actual")
+    print("5. Canción anterior")
+    print("6. siguiente canción")
+    print("7. salir")
+   
 
     opcion = input("Seleccione la opcion que mas le llame la atencion: ")
 
