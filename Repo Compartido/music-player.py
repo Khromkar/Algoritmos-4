@@ -1,5 +1,11 @@
-# Crear un algoritmo que simule un reproductor de música
-# Agregar canciones, reproducir, mostrar información de canción a través de un menú
+#PENDIENTES:
+#Agregar canciones por defecto a la lista
+#Función que formatee la duración de las canciones en mm:ss
+#Función que modifica el __str__ en formato Artista - Título - Duración Formateada
+#Agregar print modificado a impresión de canciones (Actual, Siguiente, Anterior)
+#Función que permita cambiar a canción por título
+#Función que muestre la duración total de la lista de reproducción en mm:ss
+#Investigar qué librería podría permitir que se reproduzca la canción seleccionada
 
 
 class NodoCancion:
