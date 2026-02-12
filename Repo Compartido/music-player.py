@@ -1,12 +1,11 @@
 # Crear un algoritmo que simule un reproductor de música
 # Agregar canciones, reproducir, mostrar información de canción a través de un menú
 
-# Crear un algoritmo que simule un reproductor de música
-# Agregar canciones, reproducir, mostrar información de canción a través de un menú
 
 class NodoCancion:
-    def __init__(self, dato):
-        self.dato = dato
+    def __init__(self, nombre, duracion):
+        self.nombre = nombre
+        self.duracion = duracion  # duración o tiempo de la canción en minutos
         self.anterior = None
         self.siguiente = None
 
@@ -15,14 +14,14 @@ class ListaReproduccion:
     def __init__(self):
         self.cabeza = None
         self.cola = None
-        self.actual = None  # canción que se está reproduciendo
+        self.actual = None
 
     def esta_vacia(self):
         return self.cabeza is None
 
-    # Agregar canción al final
-    def agregar_cancion(self, nombre):
-        nueva = NodoCancion(nombre)
+    # Agregar canción
+    def agregar_cancion(self, nombre, duracion):
+        nueva = NodoCancion(nombre, duracion)
 
         if self.esta_vacia():
             self.cabeza = self.cola = nueva
@@ -31,40 +30,48 @@ class ListaReproduccion:
             nueva.anterior = self.cola
             self.cola = nueva
 
-        print(f"Canción '{nombre}' agregada.")
+        print(f"Canción '{nombre}' agregada ({duracion} min).")
 
-    # Reproducir primera canción
+    # Reproducir desde el inicio
     def reproducir(self):
         if self.esta_vacia():
             print("La lista está vacía.")
         else:
             self.actual = self.cabeza
-            print(f"Reproduciendo: {self.actual.dato}")
+            print(f"Reproduciendo: {self.actual.nombre} "
+                  f"({self.actual.duracion} min)")
 
-    # Siguiente canción
+    # Siguiente canción con repetición al llegar a la ultima 
     def siguiente(self):
-        if self.actual and self.actual.siguiente:
-            self.actual = self.actual.siguiente
-            print(f"Reproduciendo: {self.actual.dato}")
+        if self.actual:
+            if self.actual.siguiente:
+                self.actual = self.actual.siguiente
+            else:
+                self.actual = self.cabeza  # vuelve al inicio
+
+            print(f"Reproduciendo: {self.actual.nombre} "
+                  f"({self.actual.duracion} min)")
         else:
-            print("No hay siguiente canción.")
+            print("No hay canción en reproducción.")
 
     # Canción anterior
     def anterior(self):
         if self.actual and self.actual.anterior:
             self.actual = self.actual.anterior
-            print(f"Reproduciendo: {self.actual.dato}")
+            print(f"Reproduciendo: {self.actual.nombre} "
+                  f"({self.actual.duracion} min)")
         else:
             print("No hay canción anterior.")
 
     # Mostrar canción actual
     def mostrar_actual(self):
         if self.actual:
-            print(f"Canción actual: {self.actual.dato}")
+            print(f"Canción actual: {self.actual.nombre} "
+                  f"({self.actual.duracion} min)")
         else:
             print("No hay canción en reproducción.")
 
-    # Mostrar toda la lista
+    # Mostrar lista completa
     def mostrar_lista(self):
         if self.esta_vacia():
             print("La lista está vacía.")
@@ -72,12 +79,12 @@ class ListaReproduccion:
             aux = self.cabeza
             print("Lista de reproducción:")
             while aux:
-                print(f"- {aux.dato}")
+                print(f"- {aux.nombre} ({aux.duracion} min)")
                 aux = aux.siguiente
 
 
-# ====================
-# MENÚ PRINCIPAL
+
+# MENÚ 
 # ====================
 
 lista = ListaReproduccion()
@@ -96,7 +103,8 @@ while True:
 
     if opcion == "1":
         nombre = input("Nombre de la canción: ")
-        lista.agregar_cancion(nombre)
+        duracion = float(input("Duración (minutos): "))
+        lista.agregar_cancion(nombre, duracion)
 
     elif opcion == "2":
         lista.reproducir()
@@ -119,4 +127,5 @@ while True:
 
     else:
         print("Opción inválida.")
+
 
