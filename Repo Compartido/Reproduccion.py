@@ -57,13 +57,13 @@ class listaDoble:
                 
 
     def siguiente(self):
-        actual = self.cabeza
+        # actual = self.cabeza
         if self.vacia(): 
             print("No hay canción en reproducción.")    
         else: 
             if actual.siguiente:  
                 actual = actual.siguiente
-                print(f"Reproduciendo: {actual.dato}")
+                print(f"Reproduciendo: {actual.nombre}")
             else:
                 print("No hay una cancion siguiente")
 
