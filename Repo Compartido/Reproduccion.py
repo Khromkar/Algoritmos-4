@@ -44,17 +44,35 @@ class listaDoble:
             print("------------")
             temp = temp.siguiente
 
-def siguiente(self):
-    if self.actual: 
-        if self.actual.siguiente:  
-            self.actual = self.actual.siguiente
-        else:  
-            self.actual = self.cabeza
+    def anterior(self):
+        actual = self.cabeza
+        if self.vacia():
+            print("No hay canción en reproducción.")    
+            
+        else:
+            if actual.anterior:
+                print(f"Reproduciendo: {actual.anterior.nombre} {actual.anterior.duracion} min")
+            else:
+                print("No hay una cancion anterior")
+                
 
-        
-        print(f"Reproduciendo: {self.actual.dato}")
-    else: 
-        print("No hay canción en reproducción.")
+    def siguiente(self):
+        actual = self.cabeza
+        if self.vacia(): 
+            print("No hay canción en reproducción.")    
+        else: 
+            if actual.siguiente:  
+                actual = actual.siguiente
+                print(f"Reproduciendo: {actual.dato}")
+            else:
+                print("No hay una cancion siguiente")
+
+
+    def duracion_total(self):
+        if self.vacia():
+            print("No hay ninguna cancion en la lista")
+        else:
+            print(f"La duracion total es igual a {self.cabeza.duracion} seguntos")
                 
 
 # Crear la lista doble
@@ -67,8 +85,9 @@ while True:
     print("1. Agregar cancion o tema")
     print("2. Duracion total")
     print("3. Lista canciones")
-    print("4. Siguiente cancion")
-    print("4. Salir")
+    print("4. Anterior cancion")
+    print("5. Siguiente cancion")
+    print("6. Salir")
 
     opcion = input("Seleccione la opcion que mas le llame la atencion: ")
 
@@ -84,11 +103,21 @@ while True:
 
     elif opcion == "2":
         lista.duracion_total()
+        continue
 
-    if opcion == "3":
+    elif opcion == "3":
         lista.mostrar_lista()
+        continue
 
     elif opcion == "4":
+        lista.anterior()
+        continue
+
+    elif opcion == "5":
+        lista.siguiente()
+        continue
+
+    elif opcion == "6":
         print("Saliendo del reproductor...")
         break
 
