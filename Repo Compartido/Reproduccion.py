@@ -45,25 +45,24 @@ class listaDoble:
             temp = temp.siguiente
 
     def anterior(self):
-        actual = self.cabeza
         if self.vacia():
             print("No hay canción en reproducción.")    
             
         else:
-            if actual.anterior:
-                print(f"Reproduciendo: {actual.anterior.nombre} {actual.anterior.duracion} min")
+            if self.actual.anterior:
+                self.actual = self.actual.anterior
+                print(f"Reproduciendo: {self.actual.nombre} ({self.actual.duracion} seg)")
             else:
                 print("No hay una cancion anterior")
                 
 
     def siguiente(self):
-        # actual = self.cabeza
         if self.vacia(): 
             print("No hay canción en reproducción.")    
         else: 
-            if actual.siguiente:  
-                actual = actual.siguiente
-                print(f"Reproduciendo: {actual.nombre}")
+            if self.actual.siguiente:  
+                self.actual = self.actual.siguiente
+                print(f"Reproduciendo: {self.actual.nombre} ({self.actual.duracion} seg)")
             else:
                 print("No hay una cancion siguiente")
 
@@ -80,7 +79,14 @@ class listaDoble:
         if self.vacia():
             print("No hay ninguna cancion en la lista")
         else:
-            print(f"La duracion total es igual a {self.cabeza.duracion} seguntos")
+            total = 0
+            temp = self.cabeza
+            while temp:
+                total += temp.duracion
+                temp = temp.siguiente
+            minutos = total // 60
+            segundos = total % 60
+            print(f"La duración total es: {minutos} min {segundos} seg")
                 
 
 # Crear la lista doble
@@ -91,13 +97,12 @@ while True:
     print("=             😹Reproductor de los temas📯           =")
     print("======================================================")
     print("1. Agregar cancion o tema")
-    print("2. Duracion total")
-    print("3. Mostrar lista de reproducción")
-    print("4. Mostrar canción actual")
-    print("5. Lista canciones")
-    print("6. Anterior cancion")
-    print("7. Siguiente cancion")
-    print("8. Salir")
+    print("2. Mostrar lista de reproducción")
+    print("3. Mostrar canción actual")
+    print("4. Anterior cancion")
+    print("5. Siguiente cancion")
+    print("6. Duracion total")
+    print("7. Salir")
 
     opcion = input("Seleccione la opcion que mas le llame la atencion: ")
 
@@ -112,23 +117,23 @@ while True:
             print("Duración inválida. Debe ingresar un número.")
 
     elif opcion == "2":
-        lista.duracion_total()
-        continue
-
-    elif opcion == "3":
         lista.mostrar_lista()
         continue
 
-    elif opcion == "4":
+    elif opcion == "3":
         lista.mostrar_actual()
         continue
 
-    elif opcion == "5":
+    elif opcion == "4":
         lista.anterior()
         continue
 
-    elif opcion == "6":
+    elif opcion == "5":
         lista.siguiente()
+        continue
+
+    elif opcion == "6":
+        lista.duracion_total()
         continue
 
     elif opcion == "7":
