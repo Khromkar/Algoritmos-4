@@ -67,6 +67,14 @@ class listaDoble:
             else:
                 print("No hay una cancion siguiente")
 
+    # Mostrar canción actual
+    def mostrar_actual(self):
+        if self.actual:
+            print(f"Canción actual: {self.actual.nombre} "
+                  f"({self.actual.duracion} seg)")
+        else:
+            print("No hay canción en reproducción.")
+
 
     def duracion_total(self):
         if self.vacia():
@@ -84,10 +92,11 @@ while True:
     print("======================================================")
     print("1. Agregar cancion o tema")
     print("2. Duracion total")
-    print("3. Lista canciones")
-    print("4. Anterior cancion")
-    print("5. Siguiente cancion")
-    print("6. Salir")
+    print("4. Lista canciones")
+    print("5. Lista canciones")
+    print("6. Anterior cancion")
+    print("7. Siguiente cancion")
+    print("8. Salir")
 
     opcion = input("Seleccione la opcion que mas le llame la atencion: ")
 
@@ -110,14 +119,18 @@ while True:
         continue
 
     elif opcion == "4":
-        lista.anterior()
+        lista.mostrar_actual()
         continue
 
     elif opcion == "5":
-        lista.siguiente()
+        lista.anterior()
         continue
 
     elif opcion == "6":
+        lista.siguiente()
+        continue
+
+    elif opcion == "7":
         print("Saliendo del reproductor...")
         break
 
