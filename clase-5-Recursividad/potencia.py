@@ -1,3 +1,5 @@
+# TODO: ¿Qué es el Tail Recursion?
+
 def potencia (a, b):
     if b==0:
         return 1
@@ -45,6 +47,7 @@ def busqueda_binaria(lista,objetivo, inicio =0, fin=None):
         return busqueda_binaria(lista, objetivo, medio + 1, fin)
 
 
+# Mostrar la lista de todas las permutaciones posibles en un vector (o lista)
 # Case base: lista vacía o un solo elemento
 if len(lista) <= 1:
     return [lista[:]] # Retornar copia de la lista
@@ -63,3 +66,8 @@ for i in range(len(lista)):
         resultado.append([elemento] + perm)
 
 return resultado
+
+def suma_lista_normal(lista):
+    if len(lista) == 0:
+        return 0
+    return lista[0] + suma_lista_normal(lista[1:])
